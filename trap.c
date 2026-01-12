@@ -54,6 +54,15 @@ trap(struct trapframe *tf)
       wakeup(&ticks);
       release(&tickslock);
     }
+    if(myproc()){
+      myproc()->exec_time++;
+
+  if(myproc()->deadline > 0 &&
+     myproc()->exec_time > myproc()->deadline){
+    myproc()->missed_deadline = 1;
+  }
+}
+
     lapiceoi();
     break;
   case T_IRQ0 + IRQ_IDE:

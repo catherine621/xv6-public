@@ -20,3 +20,11 @@
 #define SYS_link   19
 #define SYS_mkdir  20
 #define SYS_close  21
+#define SYS_setdeadline 22
+#define SYS_getproc_exec_time 23
+#define SYS_get_exec_time 24
+#define SYS_getdeadline  25
+#define SYS_getproc_missed_deadline 26 
+#define SYS_getallprocinfo 27
+
+

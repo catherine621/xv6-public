@@ -103,6 +103,15 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
+extern int sys_setdeadline(void);
+extern int sys_getproc_exec_time(void);
+extern int sys_getexectime(void);
+extern int sys_get_exec_time(void);
+extern int sys_getdeadline(void);
+extern int sys_getproc_missed_deadline(void);
+extern int sys_getallprocinfo(void);
+
+
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -126,6 +135,14 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[SYS_setdeadline] sys_setdeadline,
+[SYS_getproc_exec_time] sys_getproc_exec_time,
+[SYS_get_exec_time]   sys_get_exec_time,
+[SYS_getdeadline]   sys_getdeadline,
+[SYS_getproc_missed_deadline] sys_getproc_missed_deadline,
+[SYS_getallprocinfo] sys_getallprocinfo,
+
+
 };
 
 void
@@ -142,4 +159,9 @@ syscall(void)
             curproc->pid, curproc->name, num);
     curproc->tf->eax = -1;
   }
+}
+int
+sys_get_exec_time(void)
+{
+  return get_exec_time();
 }

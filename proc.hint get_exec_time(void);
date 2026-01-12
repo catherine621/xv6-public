@@ -53,17 +53,11 @@ struct proc {
   int exec_time;               // CPU time used
   int missed_deadline;             // Process name (debugging)
 };
-struct proc_info {
-    int pid;
-    char name[16];
-    int deadline;
-    int exec_time;
-    int missed_deadline;
-};
-
 
 // Process memory is laid out contiguously, low addresses first:
 //   text
 //   original data and bss
 //   fixed-size stack
 //   expandable heap
+int get_exec_time(void);
+
